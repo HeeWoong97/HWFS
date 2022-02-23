@@ -1,21 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include "llist.h"
 
-typedef struct Node Node;
-struct Node
-{
-    int data;
-    Node* next;
-};
-
-void init_list(Node* list_head)
+Node* init_list(Node* list_head)
 {
     list_head = (Node*)malloc(sizeof(Node));
     list_head->next = NULL;
-    printf("list_head: %p\n", list_head);
+    dbg_printf("list_head: %p\n", list_head);
+
+    return list_head;
 }
 
-void insert_node(Node* list_head, int data)
+void insert_node(Node* list_head, void* data)
 {
     Node* cur = list_head;
     while (cur->next != NULL) {
@@ -27,14 +24,14 @@ void insert_node(Node* list_head, int data)
     new->next = NULL;
 }
 
-int delete_node(Node* list_head, int num)
+void delete_node(Node* list_head, void* data, bool cmp(void*, void*))
 {
     Node* cur = list_head;
     while (1) {
         if (cur->next == NULL) {
             return -1;
         }
-        if (cur->next->data == num) {
+        if (cmp(cur->next->data, data)) {
             break;
         }
         cur = cur->next;
@@ -42,14 +39,13 @@ int delete_node(Node* list_head, int num)
     Node* target = cur->next;
     cur->next = target->next;
     free(target);
-    return num;
 }
 
-void print_list(Node* list_head)
+void print_list(Node* list_head, void print(void* data))
 {
     Node* cur = list_head->next;
     while (cur != NULL) {
-        printf("%d ", cur->data);
+        print(cur->data);
         cur = cur->next;
     }
     printf("\n");

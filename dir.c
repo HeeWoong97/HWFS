@@ -7,8 +7,7 @@ Dir* create_directory(const char* dir_name)
 {
     Dir* dir = (Dir*)malloc(sizeof(Dir));
 
-    init_list(dir->list_head);
-
+    dir->list_head = init_list(dir->list_head);
     dir->parent_dir = NULL;
     dir->child_dir = NULL;
 
