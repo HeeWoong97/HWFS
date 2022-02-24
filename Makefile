@@ -1,11 +1,14 @@
-a.out :	llist.o dir.o main.o
-	gcc -o a.out llist.o dir.o main.o
+a.out :	llist.o dir.o utils.o main.o
+	gcc -o a.out llist.o dir.o utils.o main.o
 
 llist.o : llist.c
 	gcc -c llist.c
 
 dir.o : dir.c
 	gcc -c dir.c
+
+utils.o : utils.c
+	gcc -c utils.c
 
 main.o : main.c
 	gcc -c main.c

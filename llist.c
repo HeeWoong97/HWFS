@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "llist.h"
+#include "utils.h"
 
 Node* init_list(Node* list_head)
 {
@@ -24,14 +25,14 @@ void insert_node(Node* list_head, void* data)
     new->next = NULL;
 }
 
-void delete_node(Node* list_head, void* data, bool cmp(void*, void*))
+void delete_node(Node* list_head, void* data)
 {
     Node* cur = list_head;
     while (1) {
         if (cur->next == NULL) {
-            return -1;
+            return;
         }
-        if (cmp(cur->next->data, data)) {
+        if (cmp_file(cur->next->data, data)) {
             break;
         }
         cur = cur->next;
@@ -41,11 +42,11 @@ void delete_node(Node* list_head, void* data, bool cmp(void*, void*))
     free(target);
 }
 
-void print_list(Node* list_head, void print(void* data))
+void print_list(Node* list_head)
 {
     Node* cur = list_head->next;
     while (cur != NULL) {
-        print(cur->data);
+        print_file(cur->data);
         cur = cur->next;
     }
     printf("\n");

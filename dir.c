@@ -20,12 +20,12 @@ Dir* create_directory(const char* dir_name)
     return dir;
 }
 
-void create_file(Dir* dir, int data)
+void create_file(Dir* dir, void* data)
 {
     insert_node(dir->list_head, data);
 }
 
-void delete_file(Dir* dir, int data)
+void delete_file(Dir* dir, void* data)
 {
     delete_node(dir->list_head, data);
 }
