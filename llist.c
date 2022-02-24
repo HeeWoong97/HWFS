@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "llist.h"
-#include "utils.h"
+#include "file.h"
 
 Node* init_list(Node* list_head)
 {
@@ -40,14 +40,4 @@ void delete_node(Node* list_head, void* data)
     Node* target = cur->next;
     cur->next = target->next;
     free(target);
-}
-
-void print_list(Node* list_head)
-{
-    Node* cur = list_head->next;
-    while (cur != NULL) {
-        print_file(cur->data);
-        cur = cur->next;
-    }
-    printf("\n");
 }

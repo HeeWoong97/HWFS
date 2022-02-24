@@ -2,6 +2,6 @@
 #define __HWFS_H__
 
 #include "dir.h"
-#include "utils.h"
+#include "file.h"
 
 #endif

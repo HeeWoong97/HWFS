@@ -7,7 +7,7 @@
 #define DEBUG
 #ifndef DEBUG
 #define dbg_printf(fmt, ...) \
-            printf("%s line:%d %s():" fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__);
+            printf("[%s line:%d %s()] " fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__);
 #else
 #define dbg_printf(...)
 #endif
@@ -22,6 +22,5 @@ struct Node
 Node* init_list(Node* list_head);
 void insert_node(Node* list_head, void* data);
 void delete_node(Node* list_head, void* data);
-void print_list(Node* list_head);
 
 #endif
