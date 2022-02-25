@@ -55,6 +55,8 @@ int main(void)
             char next_dir[20];
             printf("Enter next dir: ");
             scanf("%s", next_dir);
+            // "dir2"
+            cur_dir = dir2;
         }
     }
 
