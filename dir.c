@@ -33,11 +33,26 @@ void delete_file(Dir* dir, void* data)
     delete_node(dir->list_head, data);
 }
 
-void show_files(Dir* dir)
+void show_files_name(Dir* dir)
 {
     Node* cur = dir->list_head->next;
 
-    printf("[Current Directory] %s\n", dir->name);
+    while (cur != NULL) {
+        if (!strcmp((const char*)((File*)cur->data)->type, "file")) {
+            printf("%s(file)   ", ((File*)(cur->data))->name);
+        }
+        else if (!strcmp((const char*)((Dir*)cur->data)->type, "directory")) {
+            printf("%s(dir)   ", ((Dir*)cur->data)->name);
+        }
+        cur = cur->next;
+    }
+    printf("\n");
+}
+
+void show_files_specific(Dir* dir)
+{
+    Node* cur = dir->list_head->next;
+
     printf("%-15s%-15s%-15s%-20s%-15s\n", "[Type]", "[Name]", "[File Type]", "[Content]", "[Parent Dir]");
     while (cur != NULL) {
         dbg_printf("show file...\n");
@@ -56,5 +71,4 @@ void show_files(Dir* dir)
         }
         cur = cur->next;
     }
-    printf("\n");
 }

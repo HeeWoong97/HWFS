@@ -19,6 +19,7 @@ Dir* create_directory(const char* dir_name);
 void create_file(Dir *dir, void* data);
 void delete_file(Dir *dir, void* data);
 void print_directory(Dir* dir);
-void show_files(Dir* dir);
+void show_files_name(Dir* dir);
+void show_files_specific(Dir* dir);
 
 #endif
