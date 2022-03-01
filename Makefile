@@ -1,17 +1,19 @@
-a.out :	llist.o dir.o file.o main.o
-	gcc -o a.out llist.o dir.o file.o main.o
+TOP_DIR = .
+SRC_DIR = $(TOP_DIR)/src
+BUILD_DIR = $(TOP_DIR)/build
+CC = gcc
+OBJS = $(BUILD_DIR)/llist.o	\
+	   $(BUILD_DIR)/dir.o	\
+	   $(BUILD_DIR)/file.o	\
+	   $(BUILD_DIR)/mkfile.o
 
-llist.o : llist.c
-	gcc -c llist.c
+default: main
 
-dir.o : dir.c
-	gcc -c dir.c
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+		$(CC) -c -o $@ $<
 
-file.o : file.c
-	gcc -c file.c
+main: $(OBJS)
+		$(CC) $(SRC_DIR)/main.c $(OBJS)
 
-main.o : main.c
-	gcc -c main.c
-
-clean :
-	rm *.o a.out
+clean:
+		rm build/*.o a.out
