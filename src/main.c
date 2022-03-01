@@ -3,20 +3,18 @@
 #include "HWFS.h"
 #include "mkfile.h"
 
-extern Dir* dir1;
-
 int main(void)
 {
-    make_file();
-    Dir* cur_dir = dir1;
+    Dir* cur_dir = make_file();
+    
     dbg_printf("\n");
-    dbg_printf("dir1 %p\n", cur_dir);
-    dbg_printf("dir1->list_head->next %p\n", dir1->list_head->next);
-    dbg_printf("dir1->list_head->next->data %p\n", dir1->list_head->next->data);
-    dbg_printf("dir1->list_head->next->next->data %p\n", dir1->list_head->next->next->data);
-    dbg_printf("dir1->list_head->next->next->next->data %p\n", dir1->list_head->next->next->next->data);
-    dbg_printf("dir1->list_head->next->next->next->next->data %p\n", dir1->list_head->next->next->next->next->data);
-    dbg_printf("dir1->list_head->next->next->next->next->next %p\n", dir1->list_head->next->next->next->next->next);
+    dbg_printf("cur_dir %p\n", cur_dir);
+    dbg_printf("cur_dir->list_head->next %p\n", cur_dir->list_head->next);
+    dbg_printf("cur_dir->list_head->next->data %p\n", cur_dir->list_head->next->data);
+    dbg_printf("cur_dir->list_head->next->next->data %p\n", cur_dir->list_head->next->next->data);
+    dbg_printf("cur_dir->list_head->next->next->next->data %p\n", cur_dir->list_head->next->next->next->data);
+    dbg_printf("cur_dir->list_head->next->next->next->next->data %p\n", cur_dir->list_head->next->next->next->next->data);
+    dbg_printf("cur_dir->list_head->next->next->next->next->next %p\n", cur_dir->list_head->next->next->next->next->next);
     dbg_printf("\n");
 
     while (true) {

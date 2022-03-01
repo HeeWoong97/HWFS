@@ -3,6 +3,6 @@
 
 #include "HWFS.h"
 
-void make_file(void);
+Dir* make_file(void);
 
 #endif

@@ -2,22 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-Dir* dir1;
-
-void make_normal_file(Dir* dir, char file_type[], char name[], char type[], void* data)
+void make_normal_file(Dir* dir, char type[], char name[], char file_type[], void* data)
 {
     File* file = (File*)malloc(sizeof(File));
-    strcpy(file->file_type, file_type);
-    strcpy(file->name, name);
     strcpy(file->type, type);
+    strcpy(file->name, name);
+    strcpy(file->file_type, file_type);
     file->data = data;
     dbg_printf("file %p\n", file);
     create_file(dir, file);
 }
 
-void make_file(void)
+Dir* make_file(void)
 {
-    dir1 = (Dir*)malloc(sizeof(Dir));
+    Dir* dir1 = (Dir*)malloc(sizeof(Dir));
     dir1 = create_directory("dir1");
     dbg_printf("dir1 %p\n", dir1);
    
@@ -38,27 +36,29 @@ void make_file(void)
     strcpy(data3, "010-9449-7017");
     make_normal_file(dir1, "file", "my_number", "string", data3);
 
-    // Dir* dir3 = create_directory("dir3");
-    // dir3->parent_dir = dir1;
-    // create_file(dir1, dir3);
+    Dir* dir3 = create_directory("dir3");
+    dir3->parent_dir = dir1;
+    create_file(dir1, dir3);
 
-    // double data4 = 3.141592;
-    // File file4 = {"file", "pi", "double", &data4}; 
-    // create_file(dir1, &file4);
-    
-    // int data5 = 24;
-    // File file5 = {"file", "jw's age", "int", &data5};
-    // create_file(dir2, &file5);
+    double* data4 = (double*)malloc(sizeof(double));
+    *data4 = 3.141592;
+    make_normal_file(dir1, "file", "pi", "double", data4);
 
-    // int data6 = 25;
-    // File file6 = {"file", "hy's age", "int", &data6};
-    // create_file(dir2, &file6);
+    int* data5 = (int*)malloc(sizeof(int));
+    *data5 = 24;
+    make_normal_file(dir2, "file", "jw's age", "int", data5);
 
-    // const char* data7 = "010-9372-5095";
-    // File file7 = {"file", "jw's number", "string", data7};
-    // create_file(dir2, &file7);
+    int* data6 = (int*)malloc(sizeof(int));
+    *data6 = 25;
+    make_normal_file(dir2, "file", "hy's age", "int", data6);
 
-    // Dir* dir4 = create_directory("dir4");
-    // dir4->parent_dir = dir3;
-    // create_file(dir3, dir4);
+    char* data7 = (char*)malloc(sizeof(char) * 30);
+    strcpy(data7, "010-9372-5095");
+    make_normal_file(dir2, "file", "jw's number", "string", data7);
+
+    Dir* dir4 = create_directory("dir4");
+    dir4->parent_dir = dir3;
+    create_file(dir3, dir4);
+
+    return dir1;
 }

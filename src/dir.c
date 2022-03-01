@@ -47,6 +47,9 @@ void show_files_name(Dir* dir)
         else if (!strcmp((char*)((Dir*)cur->data)->type, "directory")) {
             printf("%s(dir)   ", ((Dir*)cur->data)->name);
         }
+        // else {
+            dbg_printf("(char*)((File*)cur->data)->type %s\n", (char*)((File*)cur->data)->type);
+        // }
         // printf("%s(file)   ", ((File*)(cur->data))->name);
         cur = cur->next;
         dbg_printf("cur %p\n", cur);
